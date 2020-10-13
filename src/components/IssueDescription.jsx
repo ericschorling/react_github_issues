@@ -1,5 +1,6 @@
 import React from 'react'
 import {useParams} from 'react-router-dom'
+import ReactMarkdown from 'react-markdown'
 const IssueDescription = props => {
     const {id} = useParams()
     let theIssue;
@@ -12,11 +13,11 @@ const IssueDescription = props => {
     }
     const issue = props.issues[theIssue]
     return (
-        <div>
+        <div style={{display:'flex', flexDirection:'column', alignItems:'flex-start'}}>
             <h1>{issue.title}</h1>
             <p>Status: {issue.state}</p>
             <p>Created: {issue.created_at}</p>
-            <p>Description: {issue.body}</p>
+            <ReactMarkdown source={issue.body} escapeHtml={false}></ReactMarkdown>
         </div>
     )
 }
